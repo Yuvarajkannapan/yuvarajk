@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"> </script>
+</head>
+<section>
+<body>
+
+    <div class="login-box">
+        <span class="icon-close"><ion-icon name="close-circle-outline"></ion-icon>
+        </span>
+        <form action="">
+            <h2>LOGIN</h2>
+            <div class="input-box">
+                   <span class="icon">
+                    <ion-icon name="mail-outline"></ion-icon></span>
+            <input type="email" id="email" required>
+            <label>Email</label>
+                </div>
+                <div class="input-box">
+                    <span class="icon"><ion-icon name="lock-closed-outline"></ion-icon>
+                    </span>
+             <input type="password" id = "password"required>
+             <label>Password</label>
+                 </div>
+                 <div class="remember-forgot">
+                    <label><input type="checkbox">Remember me</label>
+                 <a href="Forgotpassword.html">Forgot Password?</a>
+                </div>
+                <button type="button" onclick="login()" href="welcome.html">Login</button>
+                <p id="error" style="color: red;"></p>
+                <div class="register-link">
+                    <p>Don't have an account? <a href="register1.html">Sign Up</a></p>
+                </div>
+        </form>
+    </div>
+    
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+<script>
+    const firebaseConfig = {
+  apiKey: "AIzaSyDHR8NZb661nmxv07QKfVF0trxBs4YBj3U",
+  authDomain: "welcome-205af.firebaseapp.com",
+  projectId: "welcome-205af",
+  storageBucket: "welcome-205af.appspot.com",
+  messagingSenderId: "428389448446",
+  appId: "1:428389448446:web:8b56ddaa3fe2e7e86d43af",
+  measurementId: "G-ESVY47CK4W"
+};
+      
+      // Initialize Firebase
+      const app = firebase.initializeApp(firebaseConfig);
+      const auth =firebase.auth();
+      const database = firebase.database();
+      var database_ref = database.ref();
+
+      function login(){
+        var email = document.getElementById("email").value;
+        var password = document.getElementById("password").value;
+        auth.signInWithEmailAndPassword(email, password).then(()=>{
+    var user=auth.currentUser;
+    var uid=user.uid;
+ 
+            alert("logged in successfully!")
+            window.location.href="welcome2.html" 
+
+
+})
+.catch((error)=>{
+    document.getElementById("error").innerHTML=error.message
+})
+
+    }
+</script>
+</body>
+</section>
+</html>
